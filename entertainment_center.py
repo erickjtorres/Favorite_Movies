@@ -8,7 +8,7 @@ import movie_finder
 movie = movie_finder.MovieFinder('http://www.omdbapi.com/?i=tt3896198&apikey=e3e960d7')
 
 #create the movies we want to add
-movies_to_find = ['Limitless', 'The Social Network', 'Steve Jobs', 'The Big Short', 'The Wolf of Wall Street', 'American Psycho']
+movies_to_find = ['Limitless', 'The Social Network', 'Steve Jobs', 'The Big Short', 'The Wolf of Wall Street', 'Bleed for This']
 #create an array to store movie objects
 movies = []
 
