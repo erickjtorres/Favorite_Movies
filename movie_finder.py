@@ -3,10 +3,9 @@ import requests
 
 class MovieFinder():
 
-    def __init__(self, your_api_url, youtube_trailer):
+    def __init__(self, your_api_url):
         #you can find your own api url key at www.omdbapi.com!
         self.url = your_api_url
-        self.trailer = youtube_trailer
 
     #does a content search using omdapi
     def content_search(self, movie_title):
@@ -31,6 +30,5 @@ class MovieFinder():
         dictionary = {'title': r['Title'].encode('utf8'),
                       'plot': r['Plot'].encode('utf8'),
                       'rating': r['Ratings'][1]['Value'].encode('utf8'),
-                      'poster': r['Poster'].encode('utf8'),
-                      'trailer': self.youtube_trailer}
+                      'poster': r['Poster'].encode('utf8')}
         return dictionary
