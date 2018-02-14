@@ -13,10 +13,17 @@ main_page_head = '''
     <link rel="stylesheet" href="https://netdna.bootstrapcdn.com/bootstrap/3.1.0/css/bootstrap-theme.min.css">
     <script src="http://code.jquery.com/jquery-1.10.1.min.js"></script>
     <script src="https://netdna.bootstrapcdn.com/bootstrap/3.1.0/js/bootstrap.min.js"></script>
+    <link href="https://maxcdn.bootstrapcdn.com/font-awesome/4.7.0/css/font-awesome.min.css" rel="stylesheet" integrity="sha384-wvfXpqpZZVQGK6TAh5PVlGOfQNHSoD2xbE+QkPxCAFlNEevoEH3Sl0sibVcOQVnN" crossorigin="anonymous">
     <style type="text/css" media="screen">
         body {
             padding-top: 80px;
         }
+        .navbar {
+            background-image: none;
+            background-color: white;
+            color: white;
+        }
+        
         #trailer .modal-dialog {
             margin-top: 200px;
             width: 640px;
@@ -54,7 +61,18 @@ main_page_head = '''
             background-color: white;
         }
         .text-color {
-            color: white;
+            color: #383838;
+            font: menu;
+            text-shadow: none;
+            font-size: 20px;
+        }
+        
+        .icon-colors {
+            color: #ffff00;
+            text-shadow: -1px 1px 0 #000,
+				  1px 1px 0 #000,
+				 1px -1px 0 #000;
+				-1px -1px 0 #000;
         }
     </style>
     <script type="text/javascript" charset="utf-8">
@@ -67,6 +85,7 @@ main_page_head = '''
         // Start playing the video whenever the trailer modal is opened
         $(document).on('click', '.movie-tile', function (event) {
             var trailerYouTubeId = $(this).attr('data-trailer-youtube-id')
+            var movie_storyline = $(this).attr('data-storyline') 
             var sourceUrl = 'http://www.youtube.com/embed/' + trailerYouTubeId + '?autoplay=1&html5=1';
             $("#trailer-video-container").empty().append($("<iframe></iframe>", {
               'id': 'trailer-video',
@@ -74,6 +93,7 @@ main_page_head = '''
               'src': sourceUrl,
               'frameborder': 0
             }));
+            $('#movie-storyline').text(movie_storyline);
         });
         // Animate in the movies when the page loads
         $(document).ready(function () {
@@ -99,6 +119,7 @@ main_page_content = '''
           </a>
           <div class="scale-media" id="trailer-video-container">
           </div>
+          <p class="text-center" id="movie-storyline"></p>
         </div>
       </div>
     </div>
@@ -108,7 +129,7 @@ main_page_content = '''
       <div class="navbar navbar-inverse navbar-fixed-top" role="navigation">
         <div class="container">
           <div class="navbar-header">
-            <a class="navbar-brand text-color" href="#">Erick's Favorite Movies</a>
+            <a class="navbar-brand" href="#"><span class="text-color">FAVORITE MOVIES</span></a>
           </div>
         </div>
       </div>
@@ -122,10 +143,10 @@ main_page_content = '''
 
 # A single movie entry html template
 movie_tile_content = '''
-<div class="col-md-6 col-lg-4 movie-tile text-center" data-trailer-youtube-id="{trailer_youtube_id}" data-toggle="modal" data-target="#trailer">
+<div class="col-md-6 col-lg-4 movie-tile text-center" data-storyline="{movie_storyline}" data-trailer-youtube-id="{trailer_youtube_id}" data-toggle="modal" data-target="#trailer">
     <img src="{poster_image_url}" width="220" height="342">
     <h2>{movie_title}</h2>
-    <p>{movie_rating}</p>
+    <p>{movie_rating}<span><i class="fa fa-star fa-lg icon-colors" aria-hidden="true"></i></span></p>
 </div>
 '''
 
